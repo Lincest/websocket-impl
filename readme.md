@@ -12,3 +12,10 @@ host: `ws://localhost:8080`
 
 `java8`
 
+
+
+## Example
+
+![a](readme.assets/a.gif)
+
+![2022-11-20-22-53-02](readme.assets/2022-11-20-22-53-02.gif)
