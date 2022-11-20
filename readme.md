@@ -2,10 +2,14 @@
 
 ## FrontEnd
 
-`angular`: `9.1.13`
+`angular`: `9.1.13` 
 
-- [x] ==Status==
-- [x] ==Auto Reconnect==
+websocket implementation: `rxjs >= 6`
+
+### feature
+
+- [x] Realtime Status
+- [x] Auto Reconnect
 
 ## BackEnd
 
