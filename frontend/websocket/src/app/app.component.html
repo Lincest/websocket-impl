@@ -1,5 +1,7 @@
 <h1>
-  Write Messages
+  Websocketr Status:
+  <font color="green" *ngIf="status">UP</font>
+  <font color="red" *ngIf="!status">DOWN</font>
 </h1>
 <div class="row">
   <div class="column">
@@ -8,7 +10,7 @@
     <button (click)="send()">Send Message</button>
   </div>
 </div>
-
+<br>
 <div>
   <div style="width: 50%; display: inline-block">
     <h1>Sent Messages</h1>

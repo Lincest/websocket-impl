@@ -10,18 +10,22 @@ export class AppComponent {
   content = '';
   receivedMessages = [];
   sendMessages = [];
+  status = false;
 
   constructor(private wsService: WebsocketService) {
-    wsService.messages.subscribe(msg => {
+    wsService.messages$.subscribe(msg => {
       this.receivedMessages.push(msg);
       console.log('received message: ', msg);
+    });
+    wsService.status$.subscribe(s => {
+      this.status = s;
     });
   }
 
   send() {
     const msg: WsMessage = {source: 'angular', content: this.content};
     this.sendMessages.push(msg);
-    this.wsService.messages.next(msg);
+    this.wsService.send(msg);
   }
 
 }
