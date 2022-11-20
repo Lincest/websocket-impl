@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "websocket"
+    }
+  },
+  "defaultProject": "websocket",
+  "cli": {
+    "analytics": false
+  }
 }
