@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {AnonymousSubject, WebSocketSubject} from 'rxjs/internal-compatibility';
-import {Observable, Subject, throwError, timer} from 'rxjs';
-import {delayWhen, finalize, map, mergeMap, retry, retryWhen} from 'rxjs/operators';
+import {WebSocketSubject} from 'rxjs/internal-compatibility';
+import {BehaviorSubject, Observable, throwError, timer} from 'rxjs';
+import {finalize, mergeMap, retryWhen} from 'rxjs/operators';
 import {webSocket} from 'rxjs/webSocket';
 
 export interface WsMessage {
@@ -16,7 +16,7 @@ export class WebsocketService {
 
   private subject: WebSocketSubject<WsMessage>;
   public messages$: Observable<WsMessage>; // receive messages
-  public status$: Subject<boolean>;
+  public status$: BehaviorSubject<boolean>;
 
   // reconnect automatically
   private retryStrategy = ({
@@ -43,13 +43,13 @@ export class WebsocketService {
       }),
       finalize(() => console.log('[websocket] reconnect successfully!'))
     );
-  };
+  }
 
   constructor() {
     this.messages$ = this.connect('ws://127.0.0.1:8080/echo').pipe(
       retryWhen(this.retryStrategy())
     );
-    this.status$ = new Subject<boolean>();
+    this.status$ = new BehaviorSubject<boolean>(false);
   }
 
   public connect(url): WebSocketSubject<WsMessage> {
